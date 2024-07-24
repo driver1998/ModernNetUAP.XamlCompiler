@@ -1,0 +1,34 @@
+name: build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+  
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: |
+        dotnet pack ModernXamlCompiler/ModernXamlCompiler.msbuildproj -c Release --no-restore /clp:ErrorsOnly
+        dotnet pack projections/WinUI/WinUIProjection.csproj -c Release --no-restore /clp:ErrorsOnly
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: ModernXamlCompiler
+        path: |
+          ModernXamlCompiler/bin/Release/*.nupkg
+          projections/WinUI/bin/Release/*.nupkg
+          
