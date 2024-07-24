@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<Import Project="build/DisposableMemory.ModernNetUAP.WinUI.props" />
+
+	<PropertyGroup>
+		<TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>				
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<IsAotCompatible>true</IsAotCompatible>
+		<WindowsSdkPackageVersion>10.0.19041.37-preview</WindowsSdkPackageVersion>
+		<CsWinRTUseWindowsUIXamlProjections>true</CsWinRTUseWindowsUIXamlProjections>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<PackageId>DisposableMemory.ModernNetUAP.WinUI</PackageId>
+		<Version>2.8.6-preview</Version>
+		<Authors>driver1998</Authors>
+		<Description>WinUI 2.x Projections and build support for Modern .NET, requires DisposableMemory.ModernNetUAP.XamlCompiler package.</Description>
+		<PackageProjectUrl>https://github.com/driver1998/ModernNetUAP.XamlCompiler</PackageProjectUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.1.0-prerelease.240722.1" />
+		<PackageReference Include="Microsoft.Web.WebView2" Version="$(_PkgWebView2_Version)" GeneratePathProperty="true">
+			<ExcludeAssets>build; buildtransitive; compile; runtime</ExcludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.UI.Xaml" Version="$(_PkgWinUI_Version)" GeneratePathProperty="true">
+			<ExcludeAssets>build; buildtransitive; compile; runtime</ExcludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<PropertyGroup>
+		<CsWinRTFilters>
+			-include Microsoft
+		</CsWinRTFilters>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<CsWinRTInputs Include="$(PkgMicrosoft_UI_Xaml)\lib\uap10.0\Microsoft.UI.Xaml.winmd" />
+		<CsWinRTInputs Include="$(PkgMicrosoft_Web_WebView2)\lib\Microsoft.Web.WebView2.Core.winmd" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="build\*" Pack="true" PackagePath="build" />
+		<None Include="README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
+</Project>

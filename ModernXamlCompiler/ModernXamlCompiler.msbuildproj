@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.Build.NoTargets">
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<PackageId>DisposableMemory.ModernNetUAP.XamlCompiler</PackageId>
+		<Version>0.1.0-preview</Version>
+		<Authors>driver1998</Authors>
+		<Description>UWP (Windows.UI.Xaml) Xaml Compiler support for Modern .NET</Description>
+		<PackageProjectUrl>https://github.com/driver1998/ModernNetUAP.XamlCompiler</PackageProjectUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\shims\SystemInteropServicesWindowsRuntimeShim\SystemInteropServicesWindowsRuntimeShim.csproj">
+			<OutputItemType>Content</OutputItemType>
+			<Pack>true</Pack>
+			<PackagePath>shims\netstandard2.0</PackagePath>
+		</ProjectReference>
+		<ProjectReference Include="..\shims\SystemRuntimeWindowsRuntimeShim\SystemRuntimeWindowsRuntimeShim.csproj">
+			<OutputItemType>Content</OutputItemType>
+			<Pack>true</Pack>
+			<PackagePath>shims\netstandard2.0</PackagePath>
+		</ProjectReference>
+		<ProjectReference Include="..\shims\SystemRuntimeWindowsRuntimeXamlShim\SystemRuntimeWindowsRuntimeXamlShim.csproj">
+			<OutputItemType>Content</OutputItemType>
+			<Pack>true</Pack>
+			<PackagePath>shims\netstandard2.0</PackagePath>
+		</ProjectReference>
+	</ItemGroup>
+
+
+	<ItemGroup>		
+		<None Include="build\*" Pack="true" PackagePath="build"/>
+		<None Include="..\README.md" Pack="true" PackagePath="\"/>
+	</ItemGroup>
+
+</Project>

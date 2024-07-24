@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<!-- Import XAML compiler -->
+	<PropertyGroup>
+		<VCInstallDir>Empty</VCInstallDir>
+		<SDKIdentifier>Windows</SDKIdentifier>
+		<SDKVersion>10.0</SDKVersion>
+		<WindowsSdkPath Condition="'$(WindowsSdkPath)'==''">$([MSBuild]::GetRegistryValueFromView('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\$(SDKIdentifier)\v$(SDKVersion)', 'InstallationFolder', null, RegistryView.Registry32, RegistryView.Default))</WindowsSdkPath>
+		<WindowsKitsXamlCompilerTargetsPath>$(WindowsSdkPath)bin\$(TargetPlatformVersion)\XamlCompiler\Microsoft.Windows.UI.Xaml.Common.targets</WindowsKitsXamlCompilerTargetsPath>
+	</PropertyGroup>
+	<Import Project="$(WindowsKitsXamlCompilerTargetsPath)" />
+	<Import Condition="'$(OutputType)' == 'Library'" Project="$(MSBuildThisFileDirectory)\Microsoft.WinUI.NET.Markup.Compiler.targets" />
+	<Import Project="$(MSBuildThisFileDirectory)MrtCore.PriGen.targets" />
+
+	<!-- Remove WinRT Projection DLLs and add WinMDs back -->
+	<!-- Also add shims for System.Runtime.InteropServices.WindowsRuntime and System.Runtime.WindowsRuntime -->
+	<Target Name="XamlCompilePass1ReferenceWrap" BeforeTargets="MarkupCompilePass1">
+		<PropertyGroup>
+			<WindowsSdkProjectionPath Condition="'$(WindowsSdkProjectionPath)'==''">$([MSBuild]::NormalizeDirectory('$(NuGetPackageRoot)', 'Microsoft.Windows.SDK.NET.Ref', '$(WindowsSdkPackageVersion)'))</WindowsSdkProjectionPath>
+		</PropertyGroup>
+		
+		<PropertyGroup>
+			<!-- Add a constant to indicate this compile pass is for XAML codegen only -->
+			<DefineConstantsBackup>$(DefineConstants)</DefineConstantsBackup>
+			<DefineConstants>$(DefineConstants);COMPILING_XAML</DefineConstants>
+		</PropertyGroup>
+		
+		<ItemGroup>
+			<!-- Add Windows winmd for your selected target Windows version. -->
+			<XamlCompileReferencePathWinMD Include="$(WindowsSdkPath)\UnionMetadata\$(TargetPlatformVersion)\Facade\Windows.winmd" />
+			<XamlCompileReferencePathWinMD Include="$(WindowsSdkPath)\References\$(TargetPlatformVersion)\**\*.winmd" />
+
+			<!-- Add System.Runtime.WindowsRuntime shim -->
+			<XamlCompileReferencePathShims Include="$(MSBuildThisFileDirectory)..\shims\netstandard2.0\System.Runtime.InteropServices.WindowsRuntime.dll"/>
+			<XamlCompileReferencePathShims Include="$(MSBuildThisFileDirectory)..\shims\netstandard2.0\System.Runtime.WindowsRuntime.dll">
+				<Aliases>SystemRuntimeWindowsRuntimeShim</Aliases>
+			</XamlCompileReferencePathShims>
+			<XamlCompileReferencePathShims Include="$(MSBuildThisFileDirectory)..\shims\netstandard2.0\System.Runtime.WindowsRuntime.UI.Xaml.dll">
+				<Aliases>SystemRuntimeWindowsRuntimeXamlShim</Aliases>
+			</XamlCompileReferencePathShims>
+
+			<ReferencePath Include="@(XamlCompileReferencePathShims)"/>
+			<ReferencePath Include="@(XamlCompileReferencePathWinMD)"/>
+			
+			<!-- Remove Projections -->
+			<ReferencePathProjections Include="$(WindowsSdkProjectionPath)\**\Microsoft.Windows.SDK.NET.dll" />
+			<ReferencePathProjections Include="$(WindowsSdkProjectionPath)\**\Microsoft.Windows.UI.Xaml.dll" />
+			<ReferencePath Remove="@(ReferencePathProjections)"/>
+		</ItemGroup>
+		<Message Importance="high" Text="XamlCompilePass1ReferenceWrap"></Message>
+	</Target>
+
+	<!-- Restore the Modern .NET References -->
+	<Target Name="XamlCompilePass2AfterReferenceWrap" AfterTargets="MarkupCompilePass2">
+		<PropertyGroup>
+			<DefineConstants>$(DefineConstantsBackup)</DefineConstants>
+		</PropertyGroup>
+		<ItemGroup>
+			<ReferencePath Remove="@(XamlCompileReferencePathShims)" />
+			<ReferencePath Remove="@(XamlCompileReferencePathWinMD)" />
+			<ReferencePath Include="@(ReferencePathProjections)" />
+		</ItemGroup>
+		<Message Importance="high" Text="XamlCompilePass2AfterReferenceWrap"></Message>
+	</Target>
+	
+	<!-- Fixup for NativeAOT -->
+	<UsingTask TaskName="NativeAotFixUp" TaskFactory="CodeTaskFactory"
+        AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+		<ParameterGroup>			
+			<ObjDirectory ParameterType="System.String" Required="true"></ObjDirectory>
+		</ParameterGroup>
+		<Task>
+			<Reference Include="System.Text.RegularExpressions" />
+			<Reference Include="System.IO"/>
+			<Using Namespace="System.Text.RegularExpressions" />
+			<Using Namespace="System.IO"/>
+			<Code Type="Fragment" Language="cs">
+				<![CDATA[
+{
+	var xamlTypeInfoCs = Path.Combine(ObjDirectory, "XamlTypeInfo.g.cs");
+	if (!File.Exists(xamlTypeInfoCs))
+	{
+		Log.LogError("XamlTypeInfo.g.cs does not exist in " + ObjDirectory);
+		return false;
+	}
+	var str = File.ReadAllText(xamlTypeInfoCs);
+	str = Regex.Replace(str, 
+		"public sealed class XamlMetaDataProvider : global::Windows.UI.Xaml.Markup.IXamlMetadataProvider", 
+		"public sealed partial class XamlMetaDataProvider : global::Windows.UI.Xaml.Markup.IXamlMetadataProvider");
+	str = Regex.Replace(str, 
+		"internal class XamlSystemBaseType : global::Windows.UI.Xaml.Markup.IXamlType", 
+		"internal partial class XamlSystemBaseType : global::Windows.UI.Xaml.Markup.IXamlType");
+	str = Regex.Replace(str, 
+		"internal class XamlUserType : global::(.*?)_XamlTypeInfo.XamlSystemBaseType", 
+		"internal partial class XamlUserType : global::$1_XamlTypeInfo.XamlSystemBaseType");
+	str = Regex.Replace(str, 
+		"internal class XamlMember : global::Windows.UI.Xaml.Markup.IXamlMember", 
+		"internal partial class XamlMember : global::Windows.UI.Xaml.Markup.IXamlMember");
+	File.WriteAllText(xamlTypeInfoCs, str);
+}
+
+var pagePass2CsList = Directory.GetFiles(ObjDirectory, "*.g.cs");
+foreach (var pagePass2Cs in pagePass2CsList)
+{
+	var filename = System.IO.Path.GetFileName(pagePass2Cs);
+	if (string.Equals(filename, "App.g.cs", StringComparison.InvariantCultureIgnoreCase) || 
+	    string.Equals(filename, "XamlTypeInfo.g.cs", StringComparison.InvariantCultureIgnoreCase))
+	{
+		continue;
+	}
+	
+	var path = Path.Combine(ObjDirectory, filename);
+	
+	var str = File.ReadAllText(path);
+	str = Regex.Replace(str, 
+		"private class (.*?_obj\\d*_Bindings) :(\\s+global::Windows.UI.Xaml.(?:IDataTemplateExtension|Markup.IDataTemplateComponent|Markup.IXamlBindScopeDiagnostics|Markup.IComponentConnector),)", 
+		"private partial class $1 :$2");
+	File.WriteAllText(path, str);
+}
+        ]]>
+			</Code>
+		</Task>
+	</UsingTask>
+	<Target Name="XamlCompilePass2NativeAotFixUp" AfterTargets="XamlCompilePass2AfterReferenceWrap">
+		<Message Importance="high" Text="XamlCompilePass2NativeAotFixUp"></Message>
+		<NativeAotFixUp ObjDirectory="$(ProjectDir)$(IntermediateOutputPath)"></NativeAotFixUp>
+	</Target>
+
+</Project>

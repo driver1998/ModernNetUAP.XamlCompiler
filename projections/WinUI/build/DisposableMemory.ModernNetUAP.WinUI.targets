@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<PropertyGroup>
+		<PkgMicrosoft_WinUI Condition="'$(PkgMicrosoft_WinUI)'==''">$([MSBuild]::NormalizeDirectory('$(NuGetPackageRoot)', 'microsoft.ui.xaml', '$(_PkgWinUI_Version)'))</PkgMicrosoft_WinUI>
+		<PkgMicrosoft_WebView2 Condition="'$(PkgMicrosoft_WebView2)'==''">$([MSBuild]::NormalizeDirectory('$(NuGetPackageRoot)', 'microsoft.web.webview2', '$(_PkgWebView2_Version)'))</PkgMicrosoft_WebView2>
+		<WinUIProjectionPackagePath>$([MSBuild]::NormalizeDirectory('$(MSBuildThisFileDirectory)', '..'))</WinUIProjectionPackagePath>
+	</PropertyGroup>
+
+	<!-- List WinUI 2 WinMDs and projections for swapping -->
+	<Target Name="WinUIXamlCompileReferenceWrap" BeforeTargets="XamlCompilePass1ReferenceWrap">
+		<ItemGroup>
+			<!-- WinUI 2 WinMDs -->
+			<XamlCompileReferencePathWinMD Include="$(PkgMicrosoft_WinUI)/**/*.winmd" />
+			<XamlCompileReferencePathWinMD Include="$(PkgMicrosoft_WebView2)/**/*.winmd" />
+
+			<!-- Projections -->
+			<ReferencePathProjections Include="$(WinUIProjectionPackagePath)lib\**\WinUIProjection.dll" />
+		</ItemGroup>
+		<Message Importance="high" Text="WinUIXamlCompileReferenceWrap"></Message>
+	</Target>
+</Project>
