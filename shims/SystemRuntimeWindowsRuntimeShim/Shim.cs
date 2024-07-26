@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
+[assembly: TypeForwardedToAttribute(typeof(Windows.Foundation.Size))]
+[assembly: TypeForwardedToAttribute(typeof(Windows.Foundation.Rect))]
+[assembly: TypeForwardedToAttribute(typeof(Windows.Foundation.Point))]
 
 namespace Windows.UI
 {
@@ -18,11 +22,4 @@ namespace Windows.UI
         string IFormattable.ToString(string format, IFormatProvider formatProvider) => throw new NotImplementedException();
         public string ToString(IFormatProvider formatProvider) => throw new NotImplementedException();
     }
-}
-
-namespace Windows.Foundation
-{
-    internal struct Point { }
-    internal struct Rect { }
-    internal struct Size { }
 }

@@ -5,7 +5,7 @@
 
 	<PropertyGroup>
 		<PackageId>DisposableMemory.ModernNetUAP.XamlCompiler</PackageId>
-		<Version>0.1.0-preview2</Version>
+		<Version>0.1.0-preview3</Version>
 		<Authors>driver1998</Authors>
 		<Description>UWP (Windows.UI.Xaml) Xaml Compiler support for Modern .NET</Description>
 		<PackageProjectUrl>https://github.com/driver1998/ModernNetUAP.XamlCompiler</PackageProjectUrl>
@@ -17,17 +17,17 @@
 		<ProjectReference Include="..\shims\SystemInteropServicesWindowsRuntimeShim\SystemInteropServicesWindowsRuntimeShim.csproj">
 			<OutputItemType>Content</OutputItemType>
 			<Pack>true</Pack>
-			<PackagePath>shims\netstandard2.0</PackagePath>
+			<PackagePath>shims</PackagePath>
 		</ProjectReference>
 		<ProjectReference Include="..\shims\SystemRuntimeWindowsRuntimeShim\SystemRuntimeWindowsRuntimeShim.csproj">
 			<OutputItemType>Content</OutputItemType>
 			<Pack>true</Pack>
-			<PackagePath>shims\netstandard2.0</PackagePath>
+			<PackagePath>shims</PackagePath>
 		</ProjectReference>
 		<ProjectReference Include="..\shims\SystemRuntimeWindowsRuntimeXamlShim\SystemRuntimeWindowsRuntimeXamlShim.csproj">
 			<OutputItemType>Content</OutputItemType>
 			<Pack>true</Pack>
-			<PackagePath>shims\netstandard2.0</PackagePath>
+			<PackagePath>shims</PackagePath>
 		</ProjectReference>
 	</ItemGroup>
 

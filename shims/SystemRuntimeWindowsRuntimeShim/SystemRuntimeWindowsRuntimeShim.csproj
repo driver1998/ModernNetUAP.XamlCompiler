@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>System.Runtime.WindowsRuntime</AssemblyName>
 	<PublicSign>True</PublicSign>
 	<SignAssembly>true</SignAssembly>
@@ -11,5 +11,11 @@
 	<PublicKeyToken>b77a5c561934e089</PublicKeyToken>	  
 	<DelaySign>false</DelaySign>
   </PropertyGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.0.8" IncludeAssets="none" GeneratePathProperty="true">
+	  </PackageReference>
+	  <Reference Include="$(PkgMicrosoft_Windows_CsWinRT)\lib\net6.0\WinRT.Runtime.dll"/>
+  </ItemGroup>
 
 </Project>

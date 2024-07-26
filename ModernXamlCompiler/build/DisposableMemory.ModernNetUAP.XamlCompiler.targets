@@ -32,9 +32,9 @@
 			<XamlCompileReferencePathWinMD Include="$(WindowsSdkPath)\References\$(TargetPlatformVersion)\**\*.winmd" />
 
 			<!-- Add System.Runtime.WindowsRuntime shim -->
-			<XamlCompileReferencePathShims Include="$(MSBuildThisFileDirectory)..\shims\netstandard2.0\System.Runtime.InteropServices.WindowsRuntime.dll"/>
-			<XamlCompileReferencePathShims Include="$(MSBuildThisFileDirectory)..\shims\netstandard2.0\System.Runtime.WindowsRuntime.dll"/>
-			<XamlCompileReferencePathShims Include="$(MSBuildThisFileDirectory)..\shims\netstandard2.0\System.Runtime.WindowsRuntime.UI.Xaml.dll"/>
+			<XamlCompileReferencePathShims Include="$(MSBuildThisFileDirectory)..\shims\System.Runtime.InteropServices.WindowsRuntime.dll"/>
+			<XamlCompileReferencePathShims Include="$(MSBuildThisFileDirectory)..\shims\System.Runtime.WindowsRuntime.dll"/>
+			<XamlCompileReferencePathShims Include="$(MSBuildThisFileDirectory)..\shims\System.Runtime.WindowsRuntime.UI.Xaml.dll"/>
 
 			<ReferencePath Include="@(XamlCompileReferencePathShims)"/>
 			<ReferencePath Include="@(XamlCompileReferencePathWinMD)"/>
