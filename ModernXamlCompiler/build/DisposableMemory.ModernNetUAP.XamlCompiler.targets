@@ -33,12 +33,8 @@
 
 			<!-- Add System.Runtime.WindowsRuntime shim -->
 			<XamlCompileReferencePathShims Include="$(MSBuildThisFileDirectory)..\shims\netstandard2.0\System.Runtime.InteropServices.WindowsRuntime.dll"/>
-			<XamlCompileReferencePathShims Include="$(MSBuildThisFileDirectory)..\shims\netstandard2.0\System.Runtime.WindowsRuntime.dll">
-				<Aliases>SystemRuntimeWindowsRuntimeShim</Aliases>
-			</XamlCompileReferencePathShims>
-			<XamlCompileReferencePathShims Include="$(MSBuildThisFileDirectory)..\shims\netstandard2.0\System.Runtime.WindowsRuntime.UI.Xaml.dll">
-				<Aliases>SystemRuntimeWindowsRuntimeXamlShim</Aliases>
-			</XamlCompileReferencePathShims>
+			<XamlCompileReferencePathShims Include="$(MSBuildThisFileDirectory)..\shims\netstandard2.0\System.Runtime.WindowsRuntime.dll"/>
+			<XamlCompileReferencePathShims Include="$(MSBuildThisFileDirectory)..\shims\netstandard2.0\System.Runtime.WindowsRuntime.UI.Xaml.dll"/>
 
 			<ReferencePath Include="@(XamlCompileReferencePathShims)"/>
 			<ReferencePath Include="@(XamlCompileReferencePathWinMD)"/>
