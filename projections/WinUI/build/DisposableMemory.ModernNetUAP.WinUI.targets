@@ -17,11 +17,12 @@
 			<!-- Projections -->
 			<ReferencePathProjections Include="$(WinUIProjectionPackagePath)lib\**\WinUIProjection.dll" />
 			
-			<!-- Add WinForms and WPF WebView2 DLLs as "projections" as well, 
+			<!-- If we don't use WinForms and WPF, 
+			     add WinForms and WPF WebView2 DLLs as "projections" as well, 
 			     we don't want them to be referenced during XAML compilation -->
-			<ReferencePathProjections Include="$(PkgMicrosoft_WebView2)lib\**\Microsoft.Web.WebView2.Core.dll" />
-			<ReferencePathProjections Include="$(PkgMicrosoft_WebView2)lib\**\Microsoft.Web.WebView2.WinForms.dll" />
-			<ReferencePathProjections Include="$(PkgMicrosoft_WebView2)lib\**\Microsoft.Web.WebView2.Wpf.dll" />
+			<ReferencePathProjections Condition="('$(UseWPF)' != 'true') And ('$(UseWindowsForms)' != 'true')" Include="$(PkgMicrosoft_WebView2)lib\**\Microsoft.Web.WebView2.Core.dll" />
+			<ReferencePathProjections Condition="('$(UseWindowsForms)' != 'true')" Include="$(PkgMicrosoft_WebView2)lib\**\Microsoft.Web.WebView2.WinForms.dll" />
+			<ReferencePathProjections Condition="('$(UseWPF)' != 'true')" Include="$(PkgMicrosoft_WebView2)lib\**\Microsoft.Web.WebView2.Wpf.dll" />
 		</ItemGroup>
 		<Message Importance="high" Text="WinUIXamlCompileReferenceWrap"></Message>
 	</Target>

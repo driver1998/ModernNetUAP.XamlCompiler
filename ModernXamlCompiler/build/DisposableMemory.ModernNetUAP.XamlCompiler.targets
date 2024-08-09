@@ -19,13 +19,13 @@
 		<PropertyGroup>
 			<WindowsSdkProjectionPath Condition="'$(WindowsSdkProjectionPath)'==''">$([MSBuild]::NormalizeDirectory('$(NuGetPackageRoot)', 'Microsoft.Windows.SDK.NET.Ref', '$(WindowsSdkPackageVersion)'))</WindowsSdkProjectionPath>
 		</PropertyGroup>
-		
+
 		<PropertyGroup>
 			<!-- Add a constant to indicate this compile pass is for XAML codegen only -->
 			<DefineConstantsBackup>$(DefineConstants)</DefineConstantsBackup>
 			<DefineConstants>$(DefineConstants);COMPILING_XAML</DefineConstants>
 		</PropertyGroup>
-		
+
 		<ItemGroup>
 			<!-- Add Windows winmd for your selected target Windows version. -->
 			<XamlCompileReferencePathWinMD Include="$(WindowsSdkPath)\UnionMetadata\$(TargetPlatformVersion)\Facade\Windows.winmd" />
@@ -38,7 +38,7 @@
 
 			<ReferencePath Include="@(XamlCompileReferencePathShims)"/>
 			<ReferencePath Include="@(XamlCompileReferencePathWinMD)"/>
-			
+
 			<!-- Remove Projections -->
 			<ReferencePathProjections Include="$(WindowsSdkProjectionPath)\**\Microsoft.Windows.SDK.NET.dll" />
 			<ReferencePathProjections Include="$(WindowsSdkProjectionPath)\**\Microsoft.Windows.UI.Xaml.dll" />
@@ -59,11 +59,11 @@
 		</ItemGroup>
 		<Message Importance="high" Text="XamlCompilePass2AfterReferenceWrap"></Message>
 	</Target>
-	
+
 	<!-- Fixup for NativeAOT -->
 	<UsingTask TaskName="NativeAotFixUp" TaskFactory="CodeTaskFactory"
         AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
-		<ParameterGroup>			
+		<ParameterGroup>
 			<ObjDirectory ParameterType="System.String" Required="true"></ObjDirectory>
 		</ParameterGroup>
 		<Task>
