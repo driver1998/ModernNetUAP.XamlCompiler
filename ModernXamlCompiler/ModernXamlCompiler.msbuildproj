@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.Build.NoTargets">
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 	</PropertyGroup>
 
 	<PropertyGroup>
 		<PackageId>DisposableMemory.ModernNetUAP.XamlCompiler</PackageId>
-		<Version>0.1.0-preview3</Version>
+		<Version>0.1.0</Version>
 		<Authors>driver1998</Authors>
 		<Description>UWP (Windows.UI.Xaml) Xaml Compiler support for Modern .NET</Description>
 		<PackageProjectUrl>https://github.com/driver1998/ModernNetUAP.XamlCompiler</PackageProjectUrl>

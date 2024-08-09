@@ -1,12 +1,12 @@
 # DisposableMemory.ModernNetUAP.XamlCompiler
 
-Provides basic support for Windows.UI.Xaml (UWP) XAML codegen in Visual Studio for Modern .NET (.NET 6+).
+Provides basic support for Windows.UI.Xaml (UWP) XAML codegen in Visual Studio for Modern .NET (.NET 8+).
 
 [NuGet package](https://www.nuget.org/packages/DisposableMemory.ModernNetUAP.XamlCompiler)
 
 # Requirements
 
-- C#/WinRT with Windows.UI.Xaml support (currently `2.1.0-prerelease.240722.1`)
+- C#/WinRT with Windows.UI.Xaml support (currently `2.1.1`)
 - Supported Windows SDK Projection packages (see C#/WinRT documentation for more information)
 
 # Content

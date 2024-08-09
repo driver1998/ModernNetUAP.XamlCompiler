@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-	<_PkgWinUI_Version>2.8.6</_PkgWinUI_Version>    
-    <_PkgWebView2_Version>1.0.1264.42</_PkgWebView2_Version>    
-  </PropertyGroup>
+	<PropertyGroup>
+		<_PkgWinUI_Version>2.8.6</_PkgWinUI_Version>
+		<_PkgWebView2_Version>1.0.1264.42</_PkgWebView2_Version>
+	</PropertyGroup>
 </Project>
