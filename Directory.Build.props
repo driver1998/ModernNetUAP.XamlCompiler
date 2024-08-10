@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>		
+		<_PkgMono_Cecil_Version>0.11.5</_PkgMono_Cecil_Version>
+	</PropertyGroup>
+</Project>

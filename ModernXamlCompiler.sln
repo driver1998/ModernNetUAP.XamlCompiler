@@ -3,19 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemInteropServicesWindowsRuntimeShim", "shims\SystemInteropServicesWindowsRuntimeShim\SystemInteropServicesWindowsRuntimeShim.csproj", "{67C08941-8DA6-410D-885B-DD8ADF0AADB2}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemRuntimeWindowsRuntimeShim", "shims\SystemRuntimeWindowsRuntimeShim\SystemRuntimeWindowsRuntimeShim.csproj", "{ECE5D9A3-78B7-43B8-8904-08196DEFE4E0}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemRuntimeWindowsRuntimeXamlShim", "shims\SystemRuntimeWindowsRuntimeXamlShim\SystemRuntimeWindowsRuntimeXamlShim.csproj", "{08CDDB70-E1D7-40E3-A5E8-B26EA3E0944A}"
-EndProject
 Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "ModernXamlCompiler", "ModernXamlCompiler\ModernXamlCompiler.msbuildproj", "{909246B3-1658-4E63-8030-4DB48442248A}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shims", "Shims", "{59A8A63D-C0F4-4A65-A90B-D696DFA9B0CF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projections", "Projections", "{F3E8B257-26E3-4527-B03D-3302576A2F47}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinUIProjection", "projections\WinUI\WinUIProjection.csproj", "{A678867C-D533-49BE-81A5-B0DDE7FEC701}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinUIProjection", "Projections\WinUI\WinUIProjection.csproj", "{A678867C-D533-49BE-81A5-B0DDE7FEC701}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildTasks", "BuildTasks\BuildTasks.csproj", "{8ED633AD-A29E-4919-8F5B-5D564F62BB9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,18 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{67C08941-8DA6-410D-885B-DD8ADF0AADB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{67C08941-8DA6-410D-885B-DD8ADF0AADB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{67C08941-8DA6-410D-885B-DD8ADF0AADB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{67C08941-8DA6-410D-885B-DD8ADF0AADB2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ECE5D9A3-78B7-43B8-8904-08196DEFE4E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ECE5D9A3-78B7-43B8-8904-08196DEFE4E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ECE5D9A3-78B7-43B8-8904-08196DEFE4E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ECE5D9A3-78B7-43B8-8904-08196DEFE4E0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{08CDDB70-E1D7-40E3-A5E8-B26EA3E0944A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{08CDDB70-E1D7-40E3-A5E8-B26EA3E0944A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{08CDDB70-E1D7-40E3-A5E8-B26EA3E0944A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{08CDDB70-E1D7-40E3-A5E8-B26EA3E0944A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{909246B3-1658-4E63-8030-4DB48442248A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{909246B3-1658-4E63-8030-4DB48442248A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{909246B3-1658-4E63-8030-4DB48442248A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -43,14 +25,15 @@ Global
 		{A678867C-D533-49BE-81A5-B0DDE7FEC701}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A678867C-D533-49BE-81A5-B0DDE7FEC701}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A678867C-D533-49BE-81A5-B0DDE7FEC701}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8ED633AD-A29E-4919-8F5B-5D564F62BB9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ED633AD-A29E-4919-8F5B-5D564F62BB9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ED633AD-A29E-4919-8F5B-5D564F62BB9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ED633AD-A29E-4919-8F5B-5D564F62BB9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{67C08941-8DA6-410D-885B-DD8ADF0AADB2} = {59A8A63D-C0F4-4A65-A90B-D696DFA9B0CF}
-		{ECE5D9A3-78B7-43B8-8904-08196DEFE4E0} = {59A8A63D-C0F4-4A65-A90B-D696DFA9B0CF}
-		{08CDDB70-E1D7-40E3-A5E8-B26EA3E0944A} = {59A8A63D-C0F4-4A65-A90B-D696DFA9B0CF}
 		{A678867C-D533-49BE-81A5-B0DDE7FEC701} = {F3E8B257-26E3-4527-B03D-3302576A2F47}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

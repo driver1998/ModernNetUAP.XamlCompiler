@@ -5,7 +5,7 @@
 
 	<PropertyGroup>
 		<PackageId>DisposableMemory.ModernNetUAP.XamlCompiler</PackageId>
-		<Version>0.1.0</Version>
+		<Version>0.2.0</Version>
 		<Authors>driver1998</Authors>
 		<Description>UWP (Windows.UI.Xaml) Xaml Compiler support for Modern .NET</Description>
 		<PackageProjectUrl>https://github.com/driver1998/ModernNetUAP.XamlCompiler</PackageProjectUrl>
@@ -14,27 +14,32 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\shims\SystemInteropServicesWindowsRuntimeShim\SystemInteropServicesWindowsRuntimeShim.csproj">
+		<ProjectReference Include="..\BuildTasks\BuildTasks.csproj">
 			<OutputItemType>Content</OutputItemType>
+			<IncludeAssets>all</IncludeAssets>
 			<Pack>true</Pack>
-			<PackagePath>shims</PackagePath>
-		</ProjectReference>
-		<ProjectReference Include="..\shims\SystemRuntimeWindowsRuntimeShim\SystemRuntimeWindowsRuntimeShim.csproj">
-			<OutputItemType>Content</OutputItemType>
-			<Pack>true</Pack>
-			<PackagePath>shims</PackagePath>
-		</ProjectReference>
-		<ProjectReference Include="..\shims\SystemRuntimeWindowsRuntimeXamlShim\SystemRuntimeWindowsRuntimeXamlShim.csproj">
-			<OutputItemType>Content</OutputItemType>
-			<Pack>true</Pack>
-			<PackagePath>shims</PackagePath>
+			<PackagePath>tasks</PackagePath>
 		</ProjectReference>
 	</ItemGroup>
-
 
 	<ItemGroup>
 		<None Include="build\*" Pack="true" PackagePath="build"/>
 		<None Include="..\README.md" Pack="true" PackagePath="\"/>
 	</ItemGroup>
 
+	<ItemGroup>
+		<PackageReference Include="Mono.Cecil" Version="$(_PkgMono_Cecil_Version)" PrivateAssets="all" GeneratePathProperty="true"/>
+	</ItemGroup>
+	
+	<Target
+		Name="CopyProjectReferencesToPackage"
+		AfterTargets="ResolveReferences">
+
+		<ItemGroup>
+			<Content Include="$(PkgMono_Cecil)/lib/netstandard2.0/**/*.dll">
+				<Pack>true</Pack>
+				<PackagePath>tasks</PackagePath>
+			</Content>
+		</ItemGroup>
+	</Target>
 </Project>

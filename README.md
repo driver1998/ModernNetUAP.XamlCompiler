@@ -17,4 +17,5 @@ Provides basic support for Windows.UI.Xaml (UWP) XAML codegen in Visual Studio f
 # Acknowledgements
 
 - Microsoft
+- Mono.Cecil for fake WinMD generation
 - Mile.Xaml for XAML compiler enablement
