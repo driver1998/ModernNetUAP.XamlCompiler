@@ -12,7 +12,9 @@ Provides basic support for Windows.UI.Xaml (UWP) XAML codegen in Visual Studio f
 # Content
 
 - [DisposableMemory.ModernNetUAP.XamlCompiler](https://www.nuget.org/packages/DisposableMemory.ModernNetUAP.XamlCompiler) for basic support
-- [DisposableMemory.ModernNetUAP.WinUI](https://www.nuget.org/packages/DisposableMemory.ModernNetUAP.WinUI) for WinUI 2 projection and build support, you may also use it as a sample for wrapping other non .NET XAML control libraries. 
+- [DisposableMemory.ModernNetUAP.WinUI](https://www.nuget.org/packages/DisposableMemory.ModernNetUAP.WinUI) for WinUI 2 projection and build support
+
+For other (non legacy .NET) WinRT components and XAML control libraries, a simple C#/WinRT projection should work starting from 0.2.0.
 
 # Acknowledgements
 
