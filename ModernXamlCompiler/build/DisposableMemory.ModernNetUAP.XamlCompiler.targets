@@ -49,7 +49,7 @@
 
 	<!-- Apply fixes to XAML compiler generated code and make them AOT-safe -->
 	<Target Name="XamlCompilePass2NativeAotFixUp" AfterTargets="XamlCompilePass2AfterReferenceWrap">
-		<NativeAotFixUp ObjDirectory="$(ProjectDir)$(IntermediateOutputPath)"></NativeAotFixUp>
+		<NativeAotFixUp ObjDirectory="$(IntermediateOutputPath)"></NativeAotFixUp>
 	</Target>
 
 </Project>
