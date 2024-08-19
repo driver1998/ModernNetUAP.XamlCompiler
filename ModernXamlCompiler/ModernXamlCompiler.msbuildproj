@@ -5,7 +5,7 @@
 
 	<PropertyGroup>
 		<PackageId>DisposableMemory.ModernNetUAP.XamlCompiler</PackageId>
-		<Version>0.2.1</Version>
+		<Version>0.2.2-preview1</Version>
 		<Authors>driver1998</Authors>
 		<Description>UWP (Windows.UI.Xaml) Xaml Compiler support for Modern .NET</Description>
 		<PackageProjectUrl>https://github.com/driver1998/ModernNetUAP.XamlCompiler</PackageProjectUrl>
