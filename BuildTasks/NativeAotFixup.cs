@@ -41,8 +41,7 @@ namespace BuildTasks
 
         private void Pass2Fixes()
         {
-            Log.LogMessage(MessageImportance.High, "Pass2AddPartial");
-            var pagePass2CsList = Directory.GetFiles(ObjDirectory, "*.g.cs");
+            var pagePass2CsList = Directory.GetFiles(ObjDirectory, "*.g.cs", SearchOption.AllDirectories);
             foreach (var pagePass2Cs in pagePass2CsList)
             {
                 var filename = Path.GetFileName(pagePass2Cs);
@@ -52,9 +51,7 @@ namespace BuildTasks
                     continue;
                 }
 
-                var path = Path.Combine(ObjDirectory, filename);
-
-                var str = File.ReadAllText(path);
+                var str = File.ReadAllText(pagePass2Cs);
                 str = Regex.Replace(str,
                     "private class (.*?_obj\\d*_Bindings) :(\\s+global::Windows.UI.Xaml.(?:IDataTemplateExtension|Markup.IDataTemplateComponent|Markup.IXamlBindScopeDiagnostics|Markup.IComponentConnector),)",
                     "private partial class $1 :$2");
@@ -72,7 +69,7 @@ namespace BuildTasks
                 str = Regex.Replace(str,
                     "(this.dataRoot = )\\((global::.*?)\\)(.*?);",
                     "$1global::WinRT.CastExtensions.As<$2>($3);");
-                File.WriteAllText(path, str);
+                File.WriteAllText(pagePass2Cs, str);
             }
         }
 
