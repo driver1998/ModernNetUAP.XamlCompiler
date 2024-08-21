@@ -17,6 +17,16 @@
 	<UsingTask TaskName="DisposableMemory.ModernUAP.BuildTasks.GenerateFakeWinMD" AssemblyFile="$(ModernUAPBuildTaskPath)"/>
 	<UsingTask TaskName="DisposableMemory.ModernUAP.BuildTasks.NativeAotFixup" AssemblyFile="$(ModernUAPBuildTaskPath)"/>
 
+	<!-- .NET 9 does not resolve WPF references when UseWindowsForms=true but UseWPF=false,
+	     having WindowsFormsIntegration.dll in this case will result in build error -->
+	<Target Name="RemoveWindowsFormsIntegrationOnNet9"
+			Condition="$([MSBuild]::GetTargetFrameworkVersion('$(TargetFramework)')) >= 9 and '$(UseWindowsForms)' == 'true' and '$(UseWPF)' != 'true'"
+			BeforeTargets="MarkupCompilePass1">
+		<ItemGroup >
+			<ReferencePath Remove="@(ReferencePath)"  Condition="'%(Filename)' == 'WindowsFormsIntegration'" />
+		</ItemGroup>
+	</Target>
+
 	<!-- Generate fake WinMD (which forwards all public WinRT types to Windows SDK projections)
 	     then reference it for use in XAML compiler -->
 	<Target Name="XamlCompilePass1ReferenceWrap" BeforeTargets="MarkupCompilePass1">
@@ -32,7 +42,7 @@
 			<ProjectionDllPath Include="$(WindowsSdkProjectionPath)\**\Microsoft.Windows.SDK.NET.dll" />
 			<ProjectionDllPath Include="$(WindowsSdkProjectionPath)\**\Microsoft.Windows.UI.Xaml.dll" />
 		</ItemGroup>
-		
+
 		<GenerateFakeWinMD SourceProjectionDlls="@(ProjectionDllPath)" TargetWinMD="$(FakeWinMetadataPath)"/>
 
 		<ItemGroup>
