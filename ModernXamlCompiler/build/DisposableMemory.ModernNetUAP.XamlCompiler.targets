@@ -22,7 +22,7 @@
 	<Target Name="RemoveWindowsFormsIntegrationOnNet9"
 			Condition="$([MSBuild]::GetTargetFrameworkVersion('$(TargetFramework)')) >= 9 and '$(UseWindowsForms)' == 'true' and '$(UseWPF)' != 'true'"
 			BeforeTargets="MarkupCompilePass1">
-		<ItemGroup >
+		<ItemGroup>
 			<ReferencePath Remove="@(ReferencePath)"  Condition="'%(Filename)' == 'WindowsFormsIntegration'" />
 		</ItemGroup>
 	</Target>
