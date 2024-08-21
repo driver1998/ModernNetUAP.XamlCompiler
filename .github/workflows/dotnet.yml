@@ -25,7 +25,7 @@ jobs:
         dotnet pack ModernXamlCompiler/ModernXamlCompiler.msbuildproj -c Release --no-restore /clp:ErrorsOnly
         dotnet pack projections/WinUI/WinUIProjection.csproj -c Release --no-restore /clp:ErrorsOnly
     - name: Upload artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ModernXamlCompiler
         path: |
