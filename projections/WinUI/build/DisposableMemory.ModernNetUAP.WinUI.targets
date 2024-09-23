@@ -5,7 +5,7 @@
 		<PkgMicrosoft_WebView2 Condition="'$(PkgMicrosoft_WebView2)'==''">$([MSBuild]::NormalizeDirectory('$(NuGetPackageRoot)', 'microsoft.web.webview2', '$(_PkgWebView2_Version)'))</PkgMicrosoft_WebView2>
 	</PropertyGroup>
 
-	<Target Name="WinUIXamlCompileReferenceWrap" BeforeTargets="XamlCompilePass1ReferenceWrap">
+	<Target Name="WinUIXamlCompileReferenceWrap" BeforeTargets="MarkupCompilePass1">
 		<ItemGroup>
 			<!-- If WinUI 2 NuGet package is referenced in the main project, 
 			     WinForms and WPF versions of WebView2 will be referenced

@@ -12,7 +12,7 @@
 
 	<PropertyGroup>
 		<PackageId>DisposableMemory.ModernNetUAP.WinUI</PackageId>
-		<Version>2.8.6.1</Version>
+		<Version>2.8.6.2</Version>
 		<Authors>driver1998</Authors>
 		<Description>WinUI 2.x Projections and build support for Modern .NET, requires DisposableMemory.ModernNetUAP.XamlCompiler package.</Description>
 		<PackageProjectUrl>https://github.com/driver1998/ModernNetUAP.XamlCompiler</PackageProjectUrl>
