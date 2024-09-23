@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<_PkgWinUI_Version>2.8.6</_PkgWinUI_Version>
+		<_PkgWebView2_Version>1.0.2739.15</_PkgWebView2_Version>
+		<WebView2EnableCsWinRTProjection>true</WebView2EnableCsWinRTProjection>
+	</PropertyGroup>
+</Project>
