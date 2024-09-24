@@ -10,4 +10,5 @@
 		<PackageReference Include="Microsoft.Build.Utilities.Core" Version="17.10.4" PrivateAssets="all" ExcludeAssets="Runtime"/>
 		<PackageReference Include="Mono.Cecil" Version="$(_PkgMono_Cecil_Version)" PrivateAssets="all"/>
 	</ItemGroup>
+
 </Project>
