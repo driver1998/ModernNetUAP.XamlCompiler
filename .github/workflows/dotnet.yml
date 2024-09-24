@@ -23,12 +23,12 @@ jobs:
     - name: Build
       run: |
         dotnet pack ModernXamlCompiler/ModernXamlCompiler.msbuildproj -c Release --no-restore /clp:ErrorsOnly
-        dotnet pack projections/WinUI/WinUIProjection.csproj -c Release --no-restore /clp:ErrorsOnly
+        dotnet pack WinUIProjectionPackage/WinUIProjectionPackage.csproj -c Release --no-restore /clp:ErrorsOnly
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
         name: ModernXamlCompiler
         path: |
           ModernXamlCompiler/bin/Release/*.nupkg
-          projections/WinUI/bin/Release/*.nupkg
+          WinUIProjectionPackage/bin/Release/*.nupkg
           
