@@ -11,9 +11,4 @@
 		<PackageReference Include="Mono.Cecil" Version="$(_PkgMono_Cecil_Version)" PrivateAssets="all"/>
 	</ItemGroup>
 
-
-	<ItemGroup>
-		<None Include="build\*" Pack="true" PackagePath="build" />
-		<None Include="README.md" Pack="true" PackagePath="\" />
-	</ItemGroup>
 </Project>

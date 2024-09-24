@@ -1,7 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<Import Project="build/DisposableMemory.ModernNetUAP.WinUI.props" />
+	<Import Project="../WinUIProjectionPackage/PackageVersion.props"/>
 
 	<PropertyGroup>
+		<Version>$(WinUIProjectionPackageVersion)</Version>
 		<TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
@@ -13,7 +15,7 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.1.1" />
 		<PackageReference Include="Microsoft.Web.WebView2" Version="$(_PkgWebView2_Version)" GeneratePathProperty="true">
-			<ExcludeAssets>build; compile; runtime</ExcludeAssets>
+			<ExcludeAssets>build; buildtransitive; compile; runtime</ExcludeAssets>
 		</PackageReference>
 		<PackageReference Include="Microsoft.UI.Xaml" Version="$(_PkgWinUI_Version)" GeneratePathProperty="true">
 			<ExcludeAssets>build; buildtransitive; compile; runtime</ExcludeAssets>
@@ -29,6 +31,6 @@
 	<ItemGroup>
 		<CsWinRTInputs Include="$(PkgMicrosoft_UI_Xaml)\lib\uap10.0\Microsoft.UI.Xaml.winmd" />
 		<CsWinRTInputs Include="$(PkgMicrosoft_Web_WebView2)\lib\Microsoft.Web.WebView2.Core.winmd" />
-		<Reference Include="$(PkgMicrosoft_Web_WebView2)\lib_manual\net6.0-windows10.0.17763.0\Microsoft.Web.WebView2.Core.Projection.dll" />
+		<Reference Include="$(PkgMicrosoft_Web_WebView2)\lib_manual\net8.0-windows10.0.17763.0\Microsoft.Web.WebView2.Core.Projection.dll" />
 	</ItemGroup>
 </Project>

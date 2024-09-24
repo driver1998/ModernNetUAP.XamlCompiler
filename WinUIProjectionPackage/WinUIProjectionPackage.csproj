@@ -1,12 +1,14 @@
 ﻿<Project Sdk="Microsoft.Build.NoTargets">
-	<Import Project="build/DisposableMemory.ModernNetUAP.WinUI.props" />
+	<Import Project="../WinUIProjection/build/DisposableMemory.ModernNetUAP.WinUI.props" />
+	<Import Project="PackageVersion.props"/>
+	
 	<PropertyGroup>
 		<TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
 	</PropertyGroup>
 
 	<PropertyGroup>
 		<PackageId>DisposableMemory.ModernNetUAP.WinUI</PackageId>
-		<Version>2.8.6.11</Version>
+		<Version>$(WinUIProjectionPackageVersion)</Version>
 		<Authors>driver1998</Authors>
 		<Description>WinUI 2.x Projections and build support for Modern .NET.</Description>
 		<PackageProjectUrl>https://github.com/driver1998/ModernNetUAP.XamlCompiler</PackageProjectUrl>
@@ -15,12 +17,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="build\*" Pack="true" PackagePath="build" />
-		<None Include="..\README.md" Pack="true" PackagePath="\" />
+		<None Include="..\WinUIProjection\build\*" Pack="true" PackagePath="build" />
+		<None Include="..\WinUIProjection\README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Web.WebView2" Version="$(_PkgWebView2_Version)" PrivateAssets="none"/>
+		<PackageReference Include="Microsoft.Web.WebView2" Version="$(_PkgWebView2_Version)" PrivateAssets="none" />
 	</ItemGroup>
 
 	<ItemGroup>
