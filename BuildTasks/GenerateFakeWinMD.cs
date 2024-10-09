@@ -5,7 +5,7 @@ using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 using Mono.Cecil;
 
-namespace DisposableMemory.ModernUAP.BuildTasks
+namespace DisposableMemory.ModernNetUAP.BuildTasks
 {
     public class GenerateFakeWinMD : Task
     {

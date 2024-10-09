@@ -14,8 +14,8 @@
 	<Import Condition="'$(OutputType)' == 'Library'" Project="$(MSBuildThisFileDirectory)\Microsoft.WinUI.NET.Markup.Compiler.targets" />
 	<Import Project="$(MSBuildThisFileDirectory)MrtCore.PriGen.targets" />
 
-	<UsingTask TaskName="DisposableMemory.ModernUAP.BuildTasks.GenerateFakeWinMD" AssemblyFile="$(ModernUAPBuildTaskPath)"/>
-	<UsingTask TaskName="DisposableMemory.ModernUAP.BuildTasks.NativeAotFixup" AssemblyFile="$(ModernUAPBuildTaskPath)"/>
+	<UsingTask TaskName="DisposableMemory.ModernNetUAP.BuildTasks.GenerateFakeWinMD" AssemblyFile="$(ModernUAPBuildTaskPath)"/>
+	<UsingTask TaskName="DisposableMemory.ModernNetUAP.BuildTasks.NativeAotFixup" AssemblyFile="$(ModernUAPBuildTaskPath)"/>
 
 	<!-- .NET 9 does not resolve WPF references when UseWindowsForms=true but UseWPF=false,
 	     having WindowsFormsIntegration.dll in this case will result in build error -->

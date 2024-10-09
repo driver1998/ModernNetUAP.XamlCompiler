@@ -4,7 +4,7 @@ using System;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace BuildTasks
+namespace DisposableMemory.ModernNetUAP.BuildTasks
 {
     internal class NativeAotFixupException : Exception
     {

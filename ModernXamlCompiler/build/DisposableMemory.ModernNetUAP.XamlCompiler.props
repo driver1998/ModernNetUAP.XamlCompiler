@@ -13,6 +13,8 @@
 		<ImportFrameworkWinFXTargets>false</ImportFrameworkWinFXTargets>
 		<!-- Allow importing Assemblies by UseWindowsForms and UseWPF -->
 		<_EnableWindowsDesktopNetCoreFrameworkReferences>true</_EnableWindowsDesktopNetCoreFrameworkReferences>
+		<!-- Add Windows.UI.Xaml Projection DLL -->
+		<UseUwp>true</UseUwp>
 		<!-- Use C#/WinRT Windows.UI.Xaml Projection -->
 		<CsWinRTUseWindowsUIXamlProjections>true</CsWinRTUseWindowsUIXamlProjections>
 	</PropertyGroup>

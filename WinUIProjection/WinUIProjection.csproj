@@ -9,6 +9,7 @@
 		<Nullable>enable</Nullable>
 		<IsAotCompatible>true</IsAotCompatible>
 		<WindowsSdkPackageVersion>10.0.19041.39</WindowsSdkPackageVersion>
+		<UseUwp>true</UseUwp>
 		<CsWinRTUseWindowsUIXamlProjections>true</CsWinRTUseWindowsUIXamlProjections>
 	</PropertyGroup>
 
