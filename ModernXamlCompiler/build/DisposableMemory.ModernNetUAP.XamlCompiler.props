@@ -20,4 +20,9 @@
 		<!-- Supress Warnings in XAML Compile Pass 1 -->
 		<SuppressWarningsInPass1 Condition="'$(SuppressWarningsInPass1)' == '' ">true</SuppressWarningsInPass1>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- Enable XAML templates in VS 17.12 -->
+		<ProjectCapability Include="Uwp"/>
+	</ItemGroup>
 </Project>
