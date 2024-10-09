@@ -17,5 +17,7 @@
 		<UseUwp>true</UseUwp>
 		<!-- Use C#/WinRT Windows.UI.Xaml Projection -->
 		<CsWinRTUseWindowsUIXamlProjections>true</CsWinRTUseWindowsUIXamlProjections>
+		<!-- Supress Warnings in XAML Compile Pass 1 -->
+		<SuppressWarningsInPass1 Condition="'$(SuppressWarningsInPass1)' == '' ">true</SuppressWarningsInPass1>
 	</PropertyGroup>
 </Project>
