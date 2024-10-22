@@ -10,7 +10,7 @@
 		<PackageId>DisposableMemory.ModernNetUAP.WinUI</PackageId>
 		<Version>$(WinUIProjectionPackageVersion)</Version>
 		<Authors>driver1998</Authors>
-		<Description>WinUI 2.x Projections and build support for Modern .NET.</Description>
+		<Description>WinUI 2.x Projections for Modern .NET.</Description>
 		<PackageProjectUrl>https://github.com/driver1998/ModernNetUAP.XamlCompiler</PackageProjectUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
