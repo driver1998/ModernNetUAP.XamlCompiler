@@ -4,7 +4,7 @@
 >
 > You should only use this package if:
 > - You need to use older versions of Visual Studio.
-> - You need to use older versions of .NET and/or Windows SDK.
+> - You need to use older versions of .NET and/or Windows SDK. (Note: targeting .NET 8 using .NET 9 SDK works fine with official UWP support)
 > - You need to mix WinForms / WPF with Windows.UI.Xaml (for XAML islands) in the same project (experimental)
 >
 > [DisposableMemory.ModernNetUAP.WinUI](https://www.nuget.org/packages/DisposableMemory.ModernNetUAP.WinUI) works with official .NET 9 UWP support, if you wish to use WinUI 2 in that scenario.
