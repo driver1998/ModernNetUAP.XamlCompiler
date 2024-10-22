@@ -15,6 +15,8 @@
 		<_EnableWindowsDesktopNetCoreFrameworkReferences>true</_EnableWindowsDesktopNetCoreFrameworkReferences>
 		<!-- Add Windows.UI.Xaml Projection DLL -->
 		<UseUwp>true</UseUwp>
+		<!-- Disable Official C#/WinRT XAML Compiler Support -->
+		<UseUwpTools>false</UseUwpTools>
 		<!-- Use C#/WinRT Windows.UI.Xaml Projection -->
 		<CsWinRTUseWindowsUIXamlProjections>true</CsWinRTUseWindowsUIXamlProjections>
 		<!-- Supress Warnings in XAML Compile Pass 1 -->
