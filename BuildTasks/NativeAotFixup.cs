@@ -17,6 +17,8 @@ namespace DisposableMemory.ModernNetUAP.BuildTasks
 
         private void Pass1Fixes()
         {
+            Log.LogMessage(MessageImportance.High, "Applying fixes for trimming and NativeAOT...");
+
             var xamlTypeInfoCs = Path.Combine(ObjDirectory, "XamlTypeInfo.g.cs");
             if (!File.Exists(xamlTypeInfoCs))
             {
